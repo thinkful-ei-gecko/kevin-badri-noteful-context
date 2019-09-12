@@ -10,9 +10,7 @@ export default function FolderList(props) {
     <NotefulContext.Consumer>
       {({ folders }) => (
         <li className="sidebar__folder-list">
-          {folders.map(folder => (
-            <FolderItem folder={folder} routeProps={props.routeProps} key={folder.id} />
-          ))}
+          {folders.map(folder => <FolderItem folder={folder} key={folder.id} />)}
         </li>
       )}
     </NotefulContext.Consumer>

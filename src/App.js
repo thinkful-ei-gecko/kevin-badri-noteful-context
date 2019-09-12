@@ -24,9 +24,7 @@ export default class App extends Component {
   }
 
   handleDeleteNote = noteId => {
-    const newNotes = this.state.notes.filter(note => 
-      note.id !== noteId
-    )
+    const newNotes = this.state.notes.filter(note => note.id !== noteId);
     this.setState({
       notes: newNotes
     })
@@ -86,19 +84,8 @@ export default class App extends Component {
         <NotefulContext.Provider value={contextValue}>
           <Sidebar>
             <Switch>
-              <Route
-                exact
-                path="/"
-                render={routeProps => (
-                  <FolderList routeProps={routeProps} />
-                )}
-              />
-              <Route
-                path="/folder/:folderId"
-                render={routeProps => (
-                  <FolderList routeProps={routeProps} />
-                )}
-              />
+              <Route exact path="/" component={FolderList} />
+              <Route path="/folder/:folderId" component={FolderList} />
               <Route
                 path="/note/:noteId"
                 render={routeProps => (
@@ -120,13 +107,7 @@ export default class App extends Component {
           </Sidebar>
           <Main>
             <Switch>
-              <Route
-                exact
-                path="/"
-                render={routeProps => (
-                  <NoteList routeProps={routeProps} />
-                )}
-              />
+              <Route exact path="/" component={NoteList} />
               <Route
                 path="/note/:noteId"
                 render={routeProps => (
@@ -138,12 +119,7 @@ export default class App extends Component {
                   />
                 )}
               />
-              <Route
-                path="/folder/:folderId"
-                render={routeProps => (
-                  <NoteList routeProps={routeProps} />
-                )}
-              />
+              <Route path="/folder/:folderId" component={NoteList} />
               <Route component={NotFound} />
             </Switch>
           </Main>
