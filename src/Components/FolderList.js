@@ -11,7 +11,7 @@ export default function FolderList(props) {
       {({ folders }) => (
         <li className="sidebar__folder-list">
           {folders.map(folder => (
-            <FolderItem folder={folder} routeProps={props.routeProps} />
+            <FolderItem folder={folder} routeProps={props.routeProps} key={folder.id} />
           ))}
         </li>
       )}
