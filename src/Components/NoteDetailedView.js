@@ -27,7 +27,7 @@ class NoteDetailedView extends Component {
   static contextType = NotefulContext;
 
   render() {
-    const { notes } = this.context;
+    const { notes, deleteNote } = this.context;
     const { match } = this.props;
     const note = notes.find(note => note.id === match.params.noteId);
 
@@ -38,7 +38,7 @@ class NoteDetailedView extends Component {
         <Link to='/'>
           <button
             type="button"
-            onClick={() => deleteNoteRequest(note.id, this.context.deleteNote)}>
+            onClick={() => deleteNoteRequest(note.id, deleteNote)}>
             Delete note
           </button>
         </Link>
