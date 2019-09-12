@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 
 class FolderItem extends Component {
   render() {
-    const { location } = this.props;
+    const { location, folder } = this.props;
 
     return (
       <div className="folder-item" >
-        <Link to={`/folder/${this.props.folder.id}`}>
-          {(location.pathname.slice(8) === this.props.folder.id) && <button type="button" className="folder__button--active">{this.props.folder.name}</button>}
-          {(location.pathname.slice(8) !== this.props.folder.id) && <button type="button" >{this.props.folder.name}</button>}
+        <Link to={`/folder/${folder.id}`}>
+          {(location.pathname.slice(8) === folder.id) && <button type="button" className="folder__button--active">{folder.name}</button>}
+          {(location.pathname.slice(8) !== folder.id) && <button type="button" >{folder.name}</button>}
         </Link>
       </div>
     )
