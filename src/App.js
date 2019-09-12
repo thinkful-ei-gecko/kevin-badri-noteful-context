@@ -27,43 +27,43 @@ export default class App extends Component {
     const newNotes = this.state.notes.filter(note => note.id !== noteId);
     this.setState({
       notes: newNotes
-    })
-  }
+    });
+  };
 
   getFolders() {
     fetch(`http://localhost:9090/folders`, {
-      method: 'GET',
+      method: "GET"
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-      return response.json();
-    })
-    .then(data => {
-      this.setState({
-        folders: data
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        return response.json();
       })
-    })
-    .catch(error => alert(error))
+      .then(data => {
+        this.setState({
+          folders: data
+        });
+      })
+      .catch(error => alert(error));
   }
 
   getNotes() {
     fetch(`http://localhost:9090/notes`, {
-      method: 'GET',
+      method: "GET"
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-      return response.json();
-    })
-    .then(data => {
-      this.setState({
-        notes: data
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        return response.json();
       })
-    })
-    .catch(error => alert(error))
+      .then(data => {
+        this.setState({
+          notes: data
+        });
+      })
+      .catch(error => alert(error));
   }
 
   componentDidMount() {
@@ -75,7 +75,7 @@ export default class App extends Component {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
-      deleteNote: this.handleDeleteNote,
+      deleteNote: this.handleDeleteNote
     };
 
     return (
@@ -93,18 +93,8 @@ export default class App extends Component {
           <Main>
             <Switch>
               <Route exact path="/" component={NoteList} />
-              <Route
-                path="/note/:noteId"
-                render={routeProps => (
-                  <NoteDetailedView
-                    note={contextValue.notes.find(
-                      note => note.id === routeProps.match.params.noteId
-                    )}
-                    routeProps={routeProps}
-                  />
-                )}
-              />
               <Route path="/folder/:folderId" component={NoteList} />
+              <Route path="/note/:noteId" component={NoteDetailedView} />
               <Route component={NotFound} />
             </Switch>
           </Main>

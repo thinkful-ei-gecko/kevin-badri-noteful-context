@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
 
@@ -22,25 +23,30 @@ function deleteNoteRequest(noteId, callback) {
     });
 }
 
-export default class NoteDetailedView extends Component {
+class NoteDetailedView extends Component {
   static contextType = NotefulContext;
 
   render() {
-    const { id, name, modified, content } = this.props.note;
+    const { notes } = this.context;
+    const { match } = this.props;
+    const note = notes.find(note => note.id === match.params.noteId);
+
     return (
-      <div className="main__note-detailed-view" key={id}>
-        <span>{name}</span>
-        <span>{modified}</span>
+      <div className="main__note-detailed-view" key={note.id}>
+        <p>{note.name}</p>
+        <p>{note.modified}</p>
         <Link to="/">
           <button
             type="button"
-            onClick={() => deleteNoteRequest(id, this.context.deleteNote)}
+            onClick={() => deleteNoteRequest(note.id, this.context.deleteNote)}
           >
             Delete note
           </button>
         </Link>
-        <p>{content}</p>
+        <p>{note.content}</p>
       </div>
     );
   }
 }
+
+export default withRouter(NoteDetailedView);
