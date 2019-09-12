@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import NotefulContext from "../NotefulContext";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import NotefulContext from '../NotefulContext';
 
 function deleteNoteRequest(noteId, callback) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
-    method: "DELETE"
+    method: 'DELETE'
   })
     .then(res => {
       if (!res.ok) {
@@ -27,6 +27,7 @@ export default class NoteItem extends Component {
 
   render() {
     const { id, name, modified } = this.props.note;
+
     return (
       <div className="main__note-item" key={id}>
         <Link to={`/note/${id}`}>
@@ -35,8 +36,7 @@ export default class NoteItem extends Component {
         <p>{modified}</p>
         <button
           type="button"
-          onClick={() => deleteNoteRequest(id, this.context.deleteNote)}
-        >
+          onClick={() => deleteNoteRequest(id, this.context.deleteNote)}>
           Delete note
         </button>
       </div>

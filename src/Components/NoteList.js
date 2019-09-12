@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router";
-import NoteItem from "./NoteItem";
-import NotefulContext from "../NotefulContext";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router';
+import NoteItem from './NoteItem';
+import NotefulContext from '../NotefulContext';
 
 class NoteList extends Component {
   static contextType = NotefulContext;
@@ -16,7 +16,10 @@ class NoteList extends Component {
 
     return (
       <li className="main__note-list">
-        {notes.map(note => <NoteItem note={note} key={note.id} />)}
+        {notes.map(note =>
+          <NoteItem
+            note={note}
+            key={note.id} />)}
       </li>
     )
   }

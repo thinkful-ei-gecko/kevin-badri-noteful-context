@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router";
-import { Link } from "react-router-dom";
-import NotefulContext from "../NotefulContext";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
+import NotefulContext from '../NotefulContext';
 
 function deleteNoteRequest(noteId, callback) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
-    method: "DELETE"
+    method: 'DELETE'
   })
     .then(res => {
       if (!res.ok) {
@@ -35,11 +35,10 @@ class NoteDetailedView extends Component {
       <div className="main__note-detailed-view" key={note.id}>
         <p>{note.name}</p>
         <p>{note.modified}</p>
-        <Link to="/">
+        <Link to='/'>
           <button
             type="button"
-            onClick={() => deleteNoteRequest(note.id, this.context.deleteNote)}
-          >
+            onClick={() => deleteNoteRequest(note.id, this.context.deleteNote)}>
             Delete note
           </button>
         </Link>

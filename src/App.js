@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import "./App.css";
-import Header from "./Components/Header";
-import Main from "./Components/Main";
-import Sidebar from "./Components/Sidebar";
-import FolderList from "./Components/FolderList";
-import FolderDetailedView from "./Components/FolderDetailedView";
-import NoteList from "./Components/NoteList";
-import NoteDetailedView from "./Components/NoteDetailedView";
-import NotFound from "./Components/NotFound";
-import NotefulContext from "./NotefulContext";
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import './App.css';
+import Header from './Components/Header';
+import Main from './Components/Main';
+import Sidebar from './Components/Sidebar';
+import FolderList from './Components/FolderList';
+import FolderDetailedView from './Components/FolderDetailedView';
+import NoteList from './Components/NoteList';
+import NoteDetailedView from './Components/NoteDetailedView';
+import NotFound from './Components/NotFound';
+import NotefulContext from './NotefulContext';
 
 export default class App extends Component {
   static contextType = NotefulContext;
@@ -31,9 +31,7 @@ export default class App extends Component {
   };
 
   getFolders() {
-    fetch(`http://localhost:9090/folders`, {
-      method: "GET"
-    })
+    fetch(`http://localhost:9090/folders`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.status);
@@ -49,9 +47,7 @@ export default class App extends Component {
   }
 
   getNotes() {
-    fetch(`http://localhost:9090/notes`, {
-      method: "GET"
-    })
+    fetch(`http://localhost:9090/notes`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.status);
@@ -84,17 +80,17 @@ export default class App extends Component {
         <NotefulContext.Provider value={contextValue}>
           <Sidebar>
             <Switch>
-              <Route exact path="/" component={FolderList} />
-              <Route path="/folder/:folderId" component={FolderList} />
-              <Route path="/note/:noteId" component={FolderDetailedView} />
+              <Route exact path='/' component={FolderList} />
+              <Route path='/folder/:folderId' component={FolderList} />
+              <Route path='/note/:noteId' component={FolderDetailedView} />
               <Route component={NotFound} />
             </Switch>
           </Sidebar>
           <Main>
             <Switch>
-              <Route exact path="/" component={NoteList} />
-              <Route path="/folder/:folderId" component={NoteList} />
-              <Route path="/note/:noteId" component={NoteDetailedView} />
+              <Route exact path='/' component={NoteList} />
+              <Route path='/folder/:folderId' component={NoteList} />
+              <Route path='/note/:noteId' component={NoteDetailedView} />
               <Route component={NotFound} />
             </Switch>
           </Main>
