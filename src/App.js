@@ -86,22 +86,7 @@ export default class App extends Component {
             <Switch>
               <Route exact path="/" component={FolderList} />
               <Route path="/folder/:folderId" component={FolderList} />
-              <Route
-                path="/note/:noteId"
-                render={routeProps => (
-                  <FolderDetailedView
-                    folder={contextValue.folders.find(
-                      folder =>
-                        folder.id ===
-                        contextValue.notes.find(
-                          note => note.id === routeProps.match.params.noteId
-                        ).folderId
-                    )}
-                    routeProps={routeProps}
-                    onClickCancel={() => routeProps.history.goBack()}
-                  />
-                )}
-              />
+              <Route path="/note/:noteId" component={FolderDetailedView} />
               <Route component={NotFound} />
             </Switch>
           </Sidebar>

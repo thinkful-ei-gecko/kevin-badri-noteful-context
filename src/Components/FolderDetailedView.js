@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router";
+import NotefulContext from "../NotefulContext";
 
-export default class FolderDetailedView extends Component {
+class FolderDetailedView extends Component {
+  static contextType = NotefulContext;
+
   render() {
-    const { id, name } = this.props.folder;
+    const { folders, notes } = this.context;
+    const { match, history } = this.props;
+
+    const folder = folders.find(folder =>
+      folder.id === notes.find(note => note.id === match.params.noteId).folderId
+    );
+
     return (
-      <div className='sidebar__folder-detailed-view' key={id}>
-        <button type="button" onClick={this.props.onClickCancel}>Go back</button>
-        <h2>{name}</h2>
+      <div className='sidebar__folder-detailed-view' key={folder.id}>
+        <button type="button" onClick={() => history.goBack()}>Go back</button>
+        <h2>{folder.name}</h2>
       </div>
     )
   }
 }
+
+export default withRouter(FolderDetailedView);
